@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { NamedPost, Post, PostContainer, PostName } from '../types';
+import { ApiPost, NamedPost, Post, PostContainer, PostName } from '../types';
+import { DateTime } from 'luxon';
 
 const baseUrl = 'https://js26-hw-64-blog-eb81a-default-rtdb.europe-west1.firebasedatabase.app/';
 
@@ -19,7 +20,7 @@ export const getPosts = async () => {
 
   if (data) {
     for (const name in data) {
-      _data.push({ name, post: data[name] });
+      _data.push({ name, post: { ...data[name], createdOn: DateTime.fromISO(data[name].createdOn) } });
     }
   }
 
@@ -30,13 +31,18 @@ export const getPost = async (name: string) => {
   const endpoint = `posts/${name}.json`;
 
   const url = new URL(endpoint, baseUrl);
-  const { data, status } = await axios.get<Post | null>(url.href, { headers });
+  const { data, status } = await axios.get<ApiPost | null>(url.href, { headers });
 
   if (status < 200 || status >= 300) {
     throw new Error(`${status}`);
   }
 
-  return data;
+  let _data: Post | null = null;
+  if (data) {
+    _data = { ...data, createdOn: DateTime.fromISO(data.createdOn) };
+  }
+
+  return _data;
 };
 
 export const createPost = async (post: Post) => {

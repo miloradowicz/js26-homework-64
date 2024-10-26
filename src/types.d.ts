@@ -6,12 +6,18 @@ export interface Post {
   get createdOn(): DateTime;
 }
 
+export interface ApiPost {
+  get title(): string;
+  get body(): string;
+  get createdOn(): string;
+}
+
 export interface PostName {
   get name(): string;
 }
 
 export interface PostContainer {
-  [key: string]: Post;
+  [key: string]: ApiPost;
 }
 
 export interface NamedPost {

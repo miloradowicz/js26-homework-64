@@ -16,8 +16,8 @@ const PostCard: FC<Props> = ({ post, readMore }) => {
   return (
     <Card variant='outlined' sx={{ minWidth: 275 }}>
       <CardContent>
-        <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
-          Created on:<Box>{post.createdOn}</Box>
+        <Typography component='div' gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
+          Created on:<Box>{post.createdOn.toFormat('ff')}</Box>
         </Typography>
         <Typography variant='h5' component='div'>
           {post.title}

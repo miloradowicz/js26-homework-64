@@ -9,6 +9,8 @@ import Button from '@mui/material/Button';
 import { createPost, getPost, updatePost } from '../../lib/api';
 import { useNavigate, useParams } from 'react-router-dom';
 import NotFound from '../../components/NotFound/NotFound';
+import { DateTime } from 'luxon';
+import { Typography } from '@mui/material';
 
 interface FormData {
   title: string;
@@ -48,9 +50,9 @@ const PostEdit = () => {
     try {
       if (!error) {
         if (name) {
-          await updatePost(name, { title: data.title, body: data.body, createdOn: new Date() });
+          await updatePost(name, { title: data.title, body: data.body, createdOn: DateTime.now() });
         } else {
-          await createPost({ title: data.title, body: data.body, createdOn: new Date() });
+          await createPost({ title: data.title, body: data.body, createdOn: DateTime.now() });
         }
 
         navigate('/');
@@ -66,6 +68,9 @@ const PostEdit = () => {
 
   return (
     <>
+      <Typography variant='h4' gutterBottom>
+        {name ? 'Edit post' : 'Add post'}
+      </Typography>
       {error ? (
         <NotFound title='Пост не найден' description='Пост не найден' />
       ) : (
