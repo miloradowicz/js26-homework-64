@@ -13,8 +13,6 @@ interface Props {
 }
 
 const PostCard: FC<Props> = ({ post, readMore }) => {
-  console.debug('PostCard rendered');
-
   return (
     <Card variant='outlined' sx={{ minWidth: 275 }}>
       <CardContent>

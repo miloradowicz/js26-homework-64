@@ -65,7 +65,7 @@ const PostView = () => {
         post && (
           <Card variant='outlined' sx={{ minWidth: 275 }}>
             <CardContent>
-              <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
+              <Typography component='div' gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
                 Created on:<Box>{post.createdOn}</Box>
               </Typography>
               <Typography variant='h5' component='div'>

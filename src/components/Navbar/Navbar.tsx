@@ -7,8 +7,6 @@ import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-  console.debug('Navbar rendered');
-
   return (
     <AppBar position='static'>
       <Toolbar>
