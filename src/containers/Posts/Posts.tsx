@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NamedPost } from '../../types';
 import { getPosts } from '../../lib/api';
 import Typography from '@mui/material/Typography';
@@ -6,9 +6,7 @@ import PostCard from '../../components/PostCard/PostCard';
 import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router-dom';
 
-interface Props {}
-
-const Posts: FC<Props> = ({}) => {
+const Posts = () => {
   const [posts, setPosts] = useState<NamedPost[]>([]);
 
   const navigate = useNavigate();
